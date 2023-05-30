@@ -1,0 +1,33 @@
+{% extends 'project/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="display-4 my-4 text-center">Order book</h1>
+    <br>
+    <h1 class="display-6 my-4 text-center">Buy orders:</h1>
+    <hr>
+    <div class="my-4 container">
+        {% for order in buyOrderBook %}
+            <article>
+                <h3><em>{{ order.user }}</em> wants to {{ order.type }} {{ order.amount }}BTC for {{ order.pricePerBitcoin }}€ (total {{ order.totalPrice }}€)</h3>
+                <time>Created: {{ order.openDatetime }}</time>
+                <br><br>
+            </article>
+            <hr>
+        {% endfor %}
+    </div>
+
+    <h1 class="display-6 my-4 text-center">Sell orders:</h1>
+    <hr>
+    <div class="my-4 container">
+        {% for order in sellOrderBook %}
+            <article>
+                <h3><em>{{ order.user }}</em> wants to {{ order.type }} {{ order.amount }}BTC for {{ order.pricePerBitcoin }}€ (total {{ order.totalPrice }}€)</h3>
+                <time>Created: {{ order.openDatetime }}</time>
+                <br><br>
+            </article>
+            <hr>
+        {% endfor %}
+    </div>
+
+{% endblock %}

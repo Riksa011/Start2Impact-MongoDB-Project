@@ -1,0 +1,50 @@
+{% extends 'project/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="display-4 my-4 text-center">Open orders list:</h1>
+    <hr>
+    <div class="my-4 container">
+        {% for order in openOrders %}
+            <article>
+                <h3>Order: <br>
+                    You ({{ order.user }}) want to {{ order.type }} {{ order.amount }}BTC for {{ order.pricePerBitcoin }}€ (total {{ order.totalPrice }}€)</h3>
+                {% if order.profitLoss > 0 %}
+                    <h5>Current Profit & Loss: +{{ order.profitLoss }}</h5>
+                {% else %}
+                    <h5>Current Profit & Loss: {{ order.profitLoss }}</h5>
+                {% endif %}
+                <time>Created: {{ order.openDatetime }}</time>
+                {% if order.PartiallyClosedDatetime %}
+                    <br>
+                    <time>Partially executed: {{ order.PartiallyClosedDatetime }}</time>
+                {% endif %}
+                <br><br>
+            </article>
+            <hr>
+        {% endfor %}
+    </div>
+
+    <br><br><br>
+
+    <h1 class="display-4 my-4 text-center">Closed orders list:</h1>
+    <hr>
+    <div class="my-4 container">
+        {% for order in closedOrders %}
+            <article>
+                <h3>Order: <br>
+                    You ({{ order.user }}) wanted to {{ order.type }} {{ order.amount }}BTC for {{ order.pricePerBitcoin }}€ (total {{ order.totalPrice }}€)</h3>
+                <h5>Profit & Loss: {{ order.profitLoss }}</h5>
+                <time>Created: {{ order.openDatetime }}</time>
+                {% if order.PartiallyClosedDatetime %}
+                    <br>
+                    <time>Partially executed: {{ order.PartiallyClosedDatetime }}</time>
+                {% endif %}
+                <br>
+                <time>Executed: {{ order.closedDatetime }}</time>
+                <br><br>
+            </article>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'project/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 class="display-4 my-4 text-center">Dashboard</h1>
+    <br>
+    <hr>
+    <h1 class="display-6 my-4 text-center">Your BTC balance: {{ customer.bitcoinBalance }} BTC </h1>
+    <h1 class="display-6 my-4 text-center">Your pending BTC: {{ customer.pendingBitcoin }} BTC </h1>
+    <h1 class="display-6 my-4 text-center">Your available BTC: {{ availableBitcoin }} BTC </h1>
+    <hr>
+    <h1 class="display-6 my-4 text-center">Your EURO balance: {{ customer.euroBalance }} € </h1>
+    <h1 class="display-6 my-4 text-center">Your pending EURO: {{ customer.pendingEuro }} € </h1>
+    <h1 class="display-6 my-4 text-center">Your available EURO: {{ availableEuro }} € </h1>
+    <hr>
+    {% if customer.profitLoss > 0 %}
+        <h1 class="display-6 my-4 text-center">Your current total Profit & Loss: +{{ customer.profitLoss }} €</h1>
+    {% else %}
+        <h1 class="display-6 my-4 text-center">Your current total Profit & Loss: {{ customer.profitLoss }} €</h1>
+    {% endif %}
+    <hr>
+
+{% endblock %}

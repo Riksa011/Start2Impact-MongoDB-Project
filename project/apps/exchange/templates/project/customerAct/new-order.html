@@ -1,0 +1,16 @@
+{% extends 'project/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 class="display-4 my-4 text-center">Create new order</h1>
+    <br>
+    <div class="mb-3 my-4 container text-center d-flex justify-content-center">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+{% endblock %}

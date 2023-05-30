@@ -1,0 +1,23 @@
+{% extends 'project/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="display-4 my-4 text-center">Delete Order</h1>
+    <br>
+    <h1 class="display-6 my-4 text-center">Select open order to delete:</h1>
+    <div class="input-group mb-3 my-4 container text-center d-flex justify-content-center">
+        <form method="post">
+            {% csrf_token %}
+            <label for="order"></label>
+                <br>
+                <select name="order" id="order">
+                    {% for order in orders %}
+                    <option value="{{ order.pk }}"> {{ order.type }} {{ order.amount }} BTC for {{ order.pricePerBitcoin }}€ </option>
+                    {% endfor %}
+                </select>
+                <br><br><br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+{% endblock %}
+<!-- <option value="{{ order.id }}">{{ order.type }} {{ order.amount }} BTC for {{ order.pricePerBitcoin }}€</option> -->
